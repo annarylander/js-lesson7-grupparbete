@@ -1,67 +1,72 @@
 const coffees = [
-    { name: 'Brygg Kaffe', price: 20 },
-    { name: 'Cappucino', price: 30 },
-    { name: 'Latte', price: 40 }
-]
-
-class Customer {
-    constructor() {
-        this.transactions = []
-        this.membership = "Brons"
-        this.numberOfCups = 0
-        this.transactionSum = 0
-
-    }
-
-    getTransaction(index) {
-        return this.transactions[index]
-    }
-
-    addTransaction(typeOfCoffee, numberOfCups) {
-        let emptyArray = []
-    
-
-        if (typeOfCoffee === "Bryggkaffe") {
-            emptyArray = [{type: "Bryggkaffe", numberOfCups: 2, price: coffees[0].price}]
-            this.transactions.push(emptyArray)
-        } else if (typeOfCoffee === "Cappuccino") {
-            emptyArray = [{type: "Cappuccino", numberOfCups: 3, price: coffees[1].price}]
-            this.transactions.push(emptyArray)
-        } else if (typeOfCoffee === "Latte") { 
-            emptyArray = [{type: "Latte", numberOfCups: 4, price: coffees[2].price}]
-            this.transactions.push(emptyArray)
-        }
-    }
-    
-    getTotalSpent() {
-        let sum = 0
-        let counter = 0
-        this.transactions.forEach(transaction => {
-            transaction = getTransaction(counter)
-            sum += transaction[0][0].price * transaction[0][0].numberOfCups
-            counter++
-        })
-        return sum
-
-    }
-
-    getMembershipStatus() {
-        return this.membership
-    }
-}
-
-let customer1 = new Customer()
-customer1.addTransaction("Bryggkaffe", 5)
-customer1.addTransaction("Cappuccino", 2)
-customer1.addTransaction("Latte", 4)
-console.log(customer1.getTotalSpent())
-
-/*console.log(customer1.transactions[0][0].type)
-console.log(customer1.getTransaction
-*/
-
-    /*
-    checkMembershipStatus() {
-        return this.membership() >= this.
-    
-*/
+    {name: 'Brygg Kaffe', price: 20},
+    {name: 'Cappucino', price: 30},
+    {name: 'Latte', price: 40}
+  ]
+  
+  
+  class Customer{
+      constructor(){
+          this.allTransactions = []
+          this.membership = "Brons"
+          this.numberOfCups = 0
+          this.transactionSum = 0
+      }
+  
+      getTransaction(){
+          return this.allTransactions
+      }
+  
+     addTransaction(typeOfCoffee, numberOfCups){
+          let emptyArray = []
+          let sumOfTransaction = 0
+          if(typeOfCoffee === "Bryggkaffe") {
+              sumOfTransaction = numberOfCups * 20
+              emptyArray = ["Bryggkaffe", numberOfCups, sumOfTransaction]
+              this.allTransactions.push(emptyArray)
+          }else if (typeOfCoffee === "Cappucino") {
+              sumOfTransaction = numberOfCups * 30
+              emptyArray = ["Bryggkaffe", numberOfCups, sumOfTransaction]
+              this.allTransactions.push(emptyArray)
+          }else if(typeOfCoffee === "Latte") {
+              sumOfTransaction = numberOfCups * 40
+              emptyArray = ["Latte", numberOfCups, sumOfTransaction]
+              this.allTransactions.push(emptyArray)
+          }
+      }
+  
+      getTotalSpend(){
+          let sumOfTotal = 0;
+          
+          for(let i = 0; i < this.allTransactions.length; i++){
+              sumOfTotal += this.allTransactions[i][2]
+          }
+          return sumOfTotal;
+          
+      }
+  
+      // getMembershipStatus(){
+      //     return this.membership
+      // }
+  
+      // checkMembershipStatus(){
+      //     return this.membership
+      // }
+  
+  }
+  
+  
+  const customer1 = new Customer()
+  
+  customer1.addTransaction("Bryggkaffe", 3)
+  customer1.addTransaction("Cappucino", 1)
+  customer1.addTransaction("Latte", 1)
+  
+  customer1.getTransaction()
+  
+  //Det skriver ut: [ [ 'Bryggkaffe', 3, 60 ], [ 'Bryggkaffe', 2, 40 ] ]
+  console.log(customer1.allTransactions)
+  
+  //Nu funkar getTotalSpend()
+  console.log(customer1.getTotalSpend())
+  
