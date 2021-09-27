@@ -27,7 +27,6 @@ class Customer {
         return this.membership
     }
 
-
     getTransaction() {
         return this.transactions
     }
