@@ -59,12 +59,13 @@ class Customer{
 const customer1 = new Customer()
 
 customer1.addTransaction("Bryggkaffe", 3)
-customer1.addTransaction("Bryggkaffe", 2)
+customer1.addTransaction("Cappucino", 1)
+customer1.addTransaction("Latte", 1)
 
 customer1.getTransaction()
 
 //Det skriver ut: [ [ 'Bryggkaffe', 3, 60 ], [ 'Bryggkaffe', 2, 40 ] ]
 console.log(customer1.allTransactions)
 
-//Det skriver ut: 100 nu!
+//Nu funkar getTotalSpend()
 console.log(customer1.getTotalSpend())
