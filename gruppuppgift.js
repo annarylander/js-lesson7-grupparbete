@@ -1,5 +1,5 @@
 const coffees = [
-    { name: 'Brygg Kaffe', price: 20 },
+    { name: 'Bryggkaffe', price: 20 },
     { name: 'Cappucino', price: 30 },
     { name: 'Latte', price: 40 }
 ]
@@ -13,55 +13,92 @@ class Customer {
 
     }
 
-    getTransaction(index) {
-        return this.transactions[index]
+    getMembershipStatus() {
+        return this.membership
     }
+
+    updateMembershipStatus() {
+        if (this.numberOfCups >= 10 && this.numberOfCups < 30) {
+            this.membership = "Silver"
+        }
+        else if (this.numberOfCups >= 30) {
+            this.membership = "Guld"
+        }
+        return this.membership
+    }
+
+
+    getTransaction() {
+        return this.transactions
+    }
+
+    getTotalSpent() {
+        let sum = 0
+        for (let i = 0; i < this.transactions.length; i++) {
+            const element = this.transactions[i]
+            sum += (element[0].price * element[0].numberOfCups)
+        }
+        this.transactionSum = sum
+
+    }
+
+ 
+
+
 
     addTransaction(typeOfCoffee, numberOfCups) {
         let emptyArray = []
-    
-
         if (typeOfCoffee === "Bryggkaffe") {
-            emptyArray = [{type: "Bryggkaffe", numberOfCups: 2, price: coffees[0].price}]
+            emptyArray = [{ type: "Bryggkaffe", numberOfCups: numberOfCups, price: coffees[0].price }]
             this.transactions.push(emptyArray)
+
         } else if (typeOfCoffee === "Cappuccino") {
-            emptyArray = [{type: "Cappuccino", numberOfCups: 3, price: coffees[1].price}]
+            emptyArray = [{ type: "Cappuccino", numberOfCups: numberOfCups, price: coffees[1].price }]
             this.transactions.push(emptyArray)
-        } else if (typeOfCoffee === "Latte") { 
-            emptyArray = [{type: "Latte", numberOfCups: 4, price: coffees[2].price}]
+
+        } else if (typeOfCoffee === "Latte") {
+            emptyArray = [{ type: "Latte", numberOfCups: numberOfCups, price: coffees[2].price }]
             this.transactions.push(emptyArray)
+
         }
+
+
     }
-    
-    getTotalSpent() {
+
+    getTotalCups() {
         let sum = 0
-        let counter = 0
-        this.transactions.forEach(transaction => {
-            transaction = getTransaction(counter)
-            sum += transaction[0][0].price * transaction[0][0].numberOfCups
-            counter++
-        })
-        return sum
+        for (let i = 0; i < this.transactions.length; i++) {
+            const element = this.transactions[i]
+            sum += element[0].numberOfCups
+        }
+        this.numberOfCups = sum
 
     }
 
-    getMembershipStatus() {
-        return this.membership
+    writeMessage() {
+        for (let i = 0; i < this.transactions.length; i++) {
+            const element = this.transactions[i]
+            if (element.typeOfCoffee === "Bryggkaffe") {
+            console.log(`Du har köpt ${element[0].numberOfCups} st ${element[0].typeOfCoffee} för ${coffees[0].price} kr/st Summa:${this.transactionSum}`)
+        }
+        
+    }
     }
 }
 
 let customer1 = new Customer()
 customer1.addTransaction("Bryggkaffe", 5)
-customer1.addTransaction("Cappuccino", 2)
+customer1.addTransaction("Cappuccino", 50)
 customer1.addTransaction("Latte", 4)
-console.log(customer1.getTotalSpent())
+customer1.getTotalCups()
+customer1.getTotalSpent()
+console.log(customer1.numberOfCups)
+console.log(customer1.transactionSum)
+console.log(customer1.updateMembershipStatus())
+customer1.writeMessage()
 
-/*console.log(customer1.transactions[0][0].type)
-console.log(customer1.getTransaction
-*/
 
-    /*
-    checkMembershipStatus() {
-        return this.membership() >= this.
-    
-*/
+
+//console.log(customer1.getTotalSpent())
+//console.log(customer1.transactions)
+//console.log(customer1.getTotalCups())
