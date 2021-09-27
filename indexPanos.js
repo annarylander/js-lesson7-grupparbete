@@ -44,13 +44,7 @@ class Customer{
         
     }
 
-    getMembershipStatus(){
-        return this.membership
-    }
-
-    checkMembershipStatus(){
-        return this.membership
-    }
+  
 
 }
 
