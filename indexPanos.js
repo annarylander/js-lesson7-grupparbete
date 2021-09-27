@@ -17,19 +17,21 @@ class Customer{
         return this.allTransactions
     }
 
-    addTransaction(typeOfCoffee, numberOfCups){
+   addTransaction(typeOfCoffee, numberOfCups){
         let emptyArray = []
         let sumOfTransaction = 0
         if(typeOfCoffee === "Bryggkaffe") {
             sumOfTransaction = numberOfCups * 20
             emptyArray = ["Bryggkaffe", numberOfCups, sumOfTransaction]
-            this.allTransactions.push(emptyArray);
-        }else if(typeOfCoffee === "Cappucino") {
-            emptyArray = ["Bryggkaffe", numberOfCups]
+            this.allTransactions.push(emptyArray)
+        }else if (typeOfCoffee === "Cappucino") {
+            sumOfTransaction = numberOfCups * 30
+            emptyArray = ["Bryggkaffe", numberOfCups, sumOfTransaction]
             this.allTransactions.push(emptyArray)
         }else if(typeOfCoffee === "Latte") {
-            emptyArray = ["Bryggkaffe", numberOfCups]
-            this.allTransactions.push(emptyArray);
+            sumOfTransaction = numberOfCups * 40
+            emptyArray = ["Latte", numberOfCups, sumOfTransaction]
+            this.allTransactions.push(emptyArray)
         }
     }
 
