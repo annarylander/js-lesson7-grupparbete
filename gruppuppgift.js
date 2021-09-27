@@ -27,7 +27,6 @@ class Customer {
         return this.membership
     }
 
-
     getTransaction() {
         return this.transactions
     }
@@ -42,22 +41,26 @@ class Customer {
 
     }
 
- 
-
-
-
     addTransaction(typeOfCoffee, numberOfCups) {
         let emptyArray = []
+        let sumOfTransaction = 0
         if (typeOfCoffee === "Bryggkaffe") {
+            sumOfTransaction = numberOfCups * 20
             emptyArray = [{ type: "Bryggkaffe", numberOfCups: numberOfCups, price: coffees[0].price }]
+            console.log(`Du har köpt ${numberOfCups} st ${typeOfCoffee} för ${coffees[0].price} kr/st Summa:${sumOfTransaction}`)
             this.transactions.push(emptyArray)
+            
 
         } else if (typeOfCoffee === "Cappuccino") {
+            sumOfTransaction = numberOfCups * 30
             emptyArray = [{ type: "Cappuccino", numberOfCups: numberOfCups, price: coffees[1].price }]
+            console.log(`Du har köpt ${numberOfCups} st ${typeOfCoffee} för ${coffees[1].price} kr/st Summa:${sumOfTransaction}`)
             this.transactions.push(emptyArray)
 
         } else if (typeOfCoffee === "Latte") {
+            sumOfTransaction = numberOfCups * 40
             emptyArray = [{ type: "Latte", numberOfCups: numberOfCups, price: coffees[2].price }]
+            console.log(`Du har köpt ${numberOfCups} st ${typeOfCoffee} för ${coffees[2].price} kr/st Summa:${sumOfTransaction}`)
             this.transactions.push(emptyArray)
 
         }
@@ -75,6 +78,7 @@ class Customer {
 
     }
 
+    /*
     writeMessage() {
         for (let i = 0; i < this.transactions.length; i++) {
             const element = this.transactions[i]
@@ -83,7 +87,7 @@ class Customer {
         }
         
     }
-    }
+    }*/
 }
 
 let customer1 = new Customer()
@@ -95,7 +99,7 @@ customer1.getTotalSpent()
 console.log(customer1.numberOfCups)
 console.log(customer1.transactionSum)
 console.log(customer1.updateMembershipStatus())
-customer1.writeMessage()
+//customer1.writeMessage()
 
 
 
