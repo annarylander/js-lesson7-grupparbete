@@ -37,14 +37,19 @@ class Customer{
         let sumOfTotal = 0;
         
         for(let i = 0; i < this.allTransactions.length; i++){
-            sumOfTotal += this.allTransactions[i][2].sumOfTransaction
+            sumOfTotal += this.allTransactions[i][2]
         }
-        console.log(`sumOfTotal: ${sumOfTotal}`)
         return sumOfTotal;
         
     }
 
-  
+    // getMembershipStatus(){
+    //     return this.membership
+    // }
+
+    // checkMembershipStatus(){
+    //     return this.membership
+    // }
 
 }
 
@@ -59,8 +64,5 @@ customer1.getTransaction()
 //Det skriver ut: [ [ 'Bryggkaffe', 3, 60 ], [ 'Bryggkaffe', 2, 40 ] ]
 console.log(customer1.allTransactions)
 
-//Det skriver ut: 100
-console.log(customer1.allTransactions[0][2] + customer1.allTransactions[1][2])
-
-//Det skriver ut: NaN
+//Det skriver ut: 100 nu!
 console.log(customer1.getTotalSpend())
