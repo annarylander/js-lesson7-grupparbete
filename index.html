@@ -10,7 +10,6 @@
 
 <body>
 
-
     <label for="selectCoffee">Väj kaffesort:</label>
 
     <select name="selectCoffee" id="selectCoffee">
@@ -22,11 +21,18 @@
 
     <label for="numberOfCoffees">Antal</label>
     <input id="numberOfCoffees" />
-
-
     <button type="button" onclick="customer1.addTransaction()">Köp</button>
 
+    <div>
+        Du har handlat för: <p id="totalSpent"> </p>
+    </div>
+    <div>
+        Medlemskapsstatus: <p id="membership"> </p>
+    </div>
+
+
     <h1>Dina transaktioner</h1>
+
 
     <script>
         const coffees = [
@@ -69,6 +75,7 @@
                     sum += (element[0].price * element[0].numberOfCups)
                 }
                 this.transactionSum = sum
+                return this.transactionSum
 
             }
 
@@ -77,7 +84,7 @@
                 let sumOfTransaction = 0
                 const typeOfCoffee = document.getElementById("selectCoffee").value
                 const numberOfCups = document.getElementById("numberOfCoffees").value
-        
+
                 if (typeOfCoffee === "Bryggkaffe") {
                     sumOfTransaction = numberOfCups * 20
                     emptyArray = [{ type: "Bryggkaffe", numberOfCups: numberOfCups, price: coffees[0].price }]
@@ -97,19 +104,16 @@
                     console.log(`Du har köpt ${numberOfCups} st ${typeOfCoffee} för ${coffees[2].price} kr/st Summa:${sumOfTransaction}`)
                     this.transactions.push(emptyArray)
 
+
                 }
 
-                function onBuyButtonClick() {
-                    const input = document.getElementById("selectCoffee")
-                    const pricePerCup = 50
-                    const transactionValue = pricePerCup * input.value
-                    customer.addTransaction(transactionValue)
-                    console.log(customer.transactions)
-
-                    const totalSpentParagraph = document.getElementById("totalSpent")
-                    totalSpentParagraph.innerHTML = customer.getTotalSpent()
-                }
+                const totalSpentText = document.getElementById("totalSpent")
+                totalSpentText.innerHTML = customer1.getTotalSpent()
+                
+                const membershipText = document.getElementById("membership")
+                membershipText.innerHTML = customer1.updateMembershipStatus()
             }
+
 
             getTotalCups() {
                 let sum = 0
@@ -121,34 +125,12 @@
 
             }
 
-            /*
-            writeMessage() {
-                for (let i = 0; i < this.transactions.length; i++) {
-                    const element = this.transactions[i]
-                    if (element.typeOfCoffee === "Bryggkaffe") {
-                    console.log(`Du har köpt ${element[0].numberOfCups} st ${element[0].typeOfCoffee} för ${coffees[0].price} kr/st Summa:${this.transactionSum}`)
-                }
-                
-            }
-            }*/
+
         }
 
         let customer1 = new Customer()
-        //customer1.addTransaction("Bryggkaffe", 5)
-        //customer1.addTransaction("Cappuccino", 50)
-        //customer1.addTransaction("Latte", 4)
-        //customer1.getTotalCups()
-      //  customer1.getTotalSpent()
-      //  console.log(customer1.numberOfCups)
-        //console.log(customer1.transactionSum)
-        //console.log(customer1.updateMembershipStatus())
-//customer1.writeMessage()
 
 
-
-//console.log(customer1.getTotalSpent())
-//console.log(customer1.transactions)
-//console.log(customer1.getTotalCups())
     </script>
 </body>
 
